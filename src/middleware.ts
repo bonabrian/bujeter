@@ -5,7 +5,7 @@ export const middleware = async (req: NextRequest) => {
   const { nextUrl } = req
 
   // TODO: will implement login session
-  const hasSession = false
+  const hasSession = true
   const isPublicPath = ['/auth/signin', '/auth/signup'].includes(
     nextUrl.pathname,
   )
