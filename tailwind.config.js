@@ -27,6 +27,7 @@ module.exports = {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))',
         },
+        sidebar: 'hsl(var(--sidebar))',
       },
       minWidth: {
         1: '0.25rem',
@@ -54,6 +55,10 @@ module.exports = {
         slow: '300ms',
         slower: '400ms',
         'ultra-slow': '500ms',
+      },
+      gridTemplateColumns: {
+        sidebar: '16rem auto',
+        'sidebar-collapsed': '4rem auto',
       },
     },
   },
