@@ -1,16 +1,13 @@
 'use client'
 
 import Link from 'next/link'
+import { useRef } from 'react'
 
 import cn from '@/lib/cn'
 
-import { Bank, CaretDoubleLeft, Gear, Receipt, SquaresFour } from '../icons'
+import { useSidebar } from '../context'
+import { Bank, CaretLeft, Gear, Menu, Receipt, SquaresFour } from '../icons'
 import { Button } from '../ui'
-
-interface SidebarProps {
-  collapsed: boolean
-  onCollapsed: (collapse: boolean) => void
-}
 
 interface NavItem {
   label: string
@@ -25,15 +22,33 @@ const navItems: NavItem[] = [
   { label: 'Settings', path: '/settings', icon: <Gear /> },
 ]
 
-const Sidebar = ({ collapsed, onCollapsed }: SidebarProps) => {
+const Sidebar = () => {
+  const { collapsed, setCollapsed, show, setShow } = useSidebar()
+  const sidebarRef = useRef(null)
+
+  console.log('show', show)
+
   return (
-    <aside id="__sidebar" className="bg-sidebar">
-      <div className={cn('h-screen relative')}>
-        <nav
-          className={cn(
-            'flex justify-between flex-col h-full overflow-y-auto overflow-x-hidden whitespace-nowrap',
-          )}
-        >
+    <>
+      <div
+        className={cn(
+          'fixed inset-0 left-0 right-0 z-[1] bg-background/5 backdrop-blur-sm md:hidden',
+          show ? 'block' : 'hidden',
+        )}
+        onClick={() => setShow(false)}
+      />
+      <aside
+        id="__sidebar"
+        ref={sidebarRef}
+        className={cn(
+          'bg-sidebar z-[1] overflow-hidden h-screen fixed transition-all duration-faster translate-x-0',
+          'md:relative',
+          { 'w-64': !collapsed },
+          { 'w-16': collapsed },
+          { '-translate-x-full': !show },
+        )}
+      >
+        <nav className={cn('flex flex-col py-4 h-full')}>
           <ul className={cn('my-2 flex flex-col items-stretch gap-2')}>
             {navItems.map(({ label, path, icon }) => (
               <li
@@ -42,7 +57,7 @@ const Sidebar = ({ collapsed, onCollapsed }: SidebarProps) => {
                   'flex transition-colors duration-normal p-2 mx-3',
                   {
                     'rounded-md gap-4': !collapsed,
-                    'rounded-full w-10 h-10': collapsed,
+                    'justify-center rounded-full w-10 h-10': collapsed,
                   },
                 )}
               >
@@ -56,32 +71,39 @@ const Sidebar = ({ collapsed, onCollapsed }: SidebarProps) => {
         </nav>
         <div
           className={cn(
-            'absolute bottom-16 transition-common duration-normal',
+            'absolute w-fit h-fit hidden bottom-4 right-2',
+            'md:flex',
             {
-              'translate-x-12': collapsed,
-              'translate-x-60': !collapsed,
+              'justify-center right-4': collapsed,
             },
           )}
         >
-          <div
-            className={cn('flex', {
-              'rounded-md gap-4': !collapsed,
-              'rounded-full': collapsed,
-            })}
+          <Button
+            variant="link"
+            onClick={() => setCollapsed(!collapsed)}
+            className="rounded-full w-8 h-8 p-0 shadow-sm bg-accent"
           >
-            <Button
-              variant="link"
-              onClick={() => onCollapsed(!collapsed)}
-              className="rounded-full w-8 h-8 p-0 shadow-sm bg-sidebar"
-            >
-              <CaretDoubleLeft
-                className={cn('w-4 h-4', { 'rotate-180': collapsed })}
-              />
-            </Button>
-          </div>
+            <CaretLeft
+              className={cn('w-4 h-4 fill-foreground', {
+                'rotate-180': collapsed,
+              })}
+            />
+          </Button>
         </div>
-      </div>
-    </aside>
+      </aside>
+
+      <Button
+        variant="link"
+        onClick={() => setShow(true)}
+        className="rounded-full w-8 h-8 p-0 shadow-sm bg-accent"
+      >
+        <Menu
+          className={cn('w-4 h-4 fill-foreground', {
+            'rotate-180': collapsed,
+          })}
+        />
+      </Button>
+    </>
   )
 }
 

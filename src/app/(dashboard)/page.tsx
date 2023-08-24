@@ -35,8 +35,8 @@ export default function Home() {
   ]
 
   return (
-    <div className={cn('flex flex-col justify-center min-h-[70vh]')}>
-      <div className={cn('flex flex-col items-center text-center')}>
+    <div className={cn('flex flex-col min-h-[70vh]')}>
+      <div className={cn('flex flex-col')}>
         <div className={cn('text-current mb-4')}>
           <Vercel className={cn('w-12 h-12')} />
         </div>
@@ -67,6 +67,18 @@ export default function Home() {
           ))}
         </div>
       </div>
+      <p>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quas, nulla ex
+        quibusdam labore tenetur maiores, quia animi non velit quisquam
+        distinctio itaque incidunt quis autem, asperiores odio harum eius
+        provident.
+      </p>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia velit
+        temporibus nisi! Possimus voluptas aut a esse nemo velit asperiores sunt
+        dolorem sequi aperiam aspernatur cumque odio, dignissimos quos
+        distinctio!
+      </p>
     </div>
   )
 }

@@ -186,6 +186,20 @@ export const Gear = ({ className, ...rest }: ComponentProps<'svg'>) => {
   )
 }
 
+export const CaretLeft = ({ className, ...rest }: ComponentProps<'svg'>) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 256 256"
+      className={cn('w-5 h-5', className)}
+      {...rest}
+    >
+      <path d="M168.49,199.51a12,12,0,0,1-17,17l-80-80a12,12,0,0,1,0-17l80-80a12,12,0,0,1,17,17L97,128Z"></path>
+    </svg>
+  )
+}
+
 export const CaretDoubleLeft = ({
   className,
   ...rest
@@ -199,6 +213,20 @@ export const CaretDoubleLeft = ({
       {...rest}
     >
       <path d="M205.66,202.34a8,8,0,0,1-11.32,11.32l-80-80a8,8,0,0,1,0-11.32l80-80a8,8,0,0,1,11.32,11.32L131.31,128ZM51.31,128l74.35-74.34a8,8,0,0,0-11.32-11.32l-80,80a8,8,0,0,0,0,11.32l80,80a8,8,0,0,0,11.32-11.32Z"></path>
+    </svg>
+  )
+}
+
+export const Menu = ({ className, ...rest }: ComponentProps<'svg'>) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="currentColor"
+      viewBox="0 0 256 256"
+      className={cn('w-5 h-5', className)}
+      {...rest}
+    >
+      <path d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"></path>
     </svg>
   )
 }

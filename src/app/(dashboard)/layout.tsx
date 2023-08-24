@@ -1,4 +1,6 @@
-import DashboardClientLayout from './client.layout'
+import { SidebarContextProvider } from '@/components/context'
+import Sidebar from '@/components/sidebar'
+import cn from '@/lib/cn'
 
 interface DashboardLayoutProps {
   children: React.ReactNode
@@ -7,7 +9,14 @@ interface DashboardLayoutProps {
 const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <div id="__dashboard">
-      <DashboardClientLayout>{children}</DashboardClientLayout>
+      <SidebarContextProvider>
+        <div className={cn('flex gap-4')}>
+          <Sidebar />
+          <main id="__content" className={cn('flex-grow flex-1')}>
+            {children}
+          </main>
+        </div>
+      </SidebarContextProvider>
     </div>
   )
 }
